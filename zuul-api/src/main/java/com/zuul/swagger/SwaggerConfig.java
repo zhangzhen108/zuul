@@ -38,7 +38,7 @@ public class SwaggerConfig {
     String clientId;
     @Value("${security.oauth2.client.client-secret}")
     String clientSecret;
-    private static final String TOKEN_URL = "authentication-center-zz/oauth/token";
+    private static final String TOKEN_URL = "authentication/oauth/token";
 //    @Bean
 //    public Docket postsApi() {
 //        return new Docket(DocumentationType.SWAGGER_2)

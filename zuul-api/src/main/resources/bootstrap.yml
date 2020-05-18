@@ -4,7 +4,7 @@ eureka:
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
   client:
     serviceUrl:
-      defaultZone: http://admin:123456@39.105.40.119:9000/eureka/
+      defaultZone: http://admin:123456@localhost:9000/eureka/
 
 spring:
   application:
@@ -22,7 +22,17 @@ spring:
 server:
   port: 9001
 
-
+##  日志
+logging:
+  #config: classpath:logback.xml
+  level:
+    ROOT: INFO
+    com:
+      alibaba:
+        druid: INFO
+      zz:
+        auth:
+          server: DEBUG
 zuul:
   host:
     max-per-route-connections: 60000
@@ -37,10 +47,10 @@ zuul:
       path: /union/**
       sensitiveHeaders:
       serviceId: union
-    authentication-center:
-      path: /authentication-center/**
+    authentication:
+      path: /authentication/**
       sensitiveHeaders:
-      serviceId: authentication-center
+      serviceId: authentication
   add-proxy-headers: true
   sensitive-headers:
 
@@ -53,10 +63,10 @@ security:
     client:
       client-id: client_2
       client-secret: $2a$10$ijOPEDarOjkdahi3xpslIu6.cMpBVqYWpbGTkCh0h7Kjt4.NWQwkK
-      access-token-uri: http://localhost:9001/authentication-center/oauth/token
-      user-authorization-uri: http://localhost:9001/authentication-center/oauth/authorize
+      access-token-uri: http://localhost:9001/authentication/oauth/token
+      user-authorization-uri: http://localhost:9001/authentication/oauth/authorize
     resource:
-      user-info-uri: http://localhost:9001/authentication-center/user
+      user-info-uri: http://localhost:9001/authentication/user
       prefer-token-info: false
 ignore:
   authUrls: /oauth/token,v2
